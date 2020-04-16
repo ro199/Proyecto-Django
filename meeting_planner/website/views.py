@@ -1,9 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from datetime import datetime
+from meetings.models import Meeting
 # Create your views here.
+
 def welcome(request):
-    return HttpResponse("Hola como estan, ustedes son pareja")
+    return render(request, "website/welcome.html",
+                  {"meetings": Meeting.objects.all()})
+#    return HttpResponse("Hola como estan, ustedes son pareja")
+
 
 def date(request):
     return HttpResponse("This page was served at" + str(datetime.now()))
